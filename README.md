@@ -1,21 +1,12 @@
-## Laboratory work IV
-Вы продолжаете проходить стажировку в "Formatter Inc." (см подробности).
+## Laboratory work VI
 
-В прошлый раз ваше задание заключалось в настройке автоматизированной системы CMake.
+## Homework
 
-Сейчас вам требуется настроить систему непрерывной интеграции для библиотек и приложений, с которыми вы работали в прошлый раз. Настройте сборочные процедуры на различных платформах:
-
-используйте TravisCI для сборки на операционной системе Linux с использованием компиляторов gcc и clang;
-используйте AppVeyor для сборки на операционной системе Windows.
-
-добавлен [файл](https://github.com/tonemtonem/lab04/blob/main/.travis.yml) для сборки TravisCI
-
-добавлен [файл](https://github.com/tonemtonem/lab04/blob/main/appveyor.yml) для сборки AppVeyor
-
-
-
-Вывод [TravisCI](https://app.travis-ci.com/github/tonemtonem/lab04/builds/277899526?serverType=git)
-
-Вывод [AppVeyor](https://ci.appveyor.com/project/tonemtonem/lab04)
-
-Вывод[Github Actions](https://github.com/tonemtonem/lab04/actions/runs/24965690383)
+После того, как вы настроили взаимодействие с системой непрерывной интеграции,</br>
+обеспечив автоматическую сборку и тестирование ваших изменений, стоит задуматься</br>
+о создание пакетов для измениний, которые помечаются тэгами (см. вкладку [releases](https://github.com/tp-labs/lab06/releases)).</br>
+Пакет должен содержать приложение _solver_ из [предыдущего задания](https://github.com/tp-labs/lab03#задание-1)
+Таким образом, каждый новый релиз будет состоять из следующих компонентов:
+- архивы с файлами исходного кода (`.tar.gz`, `.zip`)
+- пакеты с бинарным файлом _solver_ (`.deb`, `.rpm`, `.msi`, `.dmg`)
+[releases](https://github.com/tonemtonem/lab06.1/releases)
