@@ -1,9 +1,13 @@
 name: CI Build & Package
 
+permissions:
+  contents: write  
+  packages: write 
+
 on:
   push:
     branches: [ main ]
-    tags: [ 'v*' ]  # 🎯 Триггер для тегов вида v0.1.0.0
+    tags: [ 'v*' ]
   pull_request:
     branches: [ main ]
 
@@ -21,15 +25,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      # Установка зависимостей
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y cmake ${{ matrix.compiler }}
       
-      # Установка CXX
       - name: Set CXX
         run: echo "CXX=${{ matrix.compiler == 'gcc' && 'g++' || 'clang++' }}" >> $GITHUB_ENV
       
-      # Конфигурация CMake
       - name: Configure CMake
         run: cmake -S . -B _build -DCMAKE_INSTALL_PREFIX=_install
         env:
