@@ -1,0 +1,10 @@
+/usr/bin/hello_world_app
+/usr/bin/solver_app
+/usr/lib/libformatter.a
+/usr/lib/libformatter_ex.a
+/usr/lib/libsolver.a
+/usr/include/solver/formatter.h
+/usr/include/solver/formatter_ex.h
+/usr/include/solver/solver.h
+/usr/share/doc/solver-app/README.md
+/usr/share/doc/solver-app/LICENSE

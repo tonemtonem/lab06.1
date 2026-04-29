@@ -1,0 +1,50 @@
+# ============================================================
+# CPack Configuration for solver_app
+# ============================================================
+include(InstallRequiredSystemLibraries)
+
+set(CPACK_PACKAGE_CONTACT "your@email.com")
+set(CPACK_PACKAGE_VENDOR "Your Name")
+set(CPACK_PACKAGE_VERSION_MAJOR ${PRINT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${PRINT_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${PRINT_VERSION_PATCH})
+set(CPACK_PACKAGE_VERSION_TWEAK ${PRINT_VERSION_TWEAK})
+set(CPACK_PACKAGE_VERSION ${PRINT_VERSION})
+set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/DESCRIPTION")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "C++ application for solving quadratic equations")
+
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+
+set(CPACK_RPM_PACKAGE_NAME "solver-app")
+set(CPACK_RPM_PACKAGE_LICENSE "MIT")
+set(CPACK_RPM_PACKAGE_GROUP "Development/Tools")
+set(CPACK_RPM_CHANGELOG_FILE "${CMAKE_CURRENT_SOURCE_DIR}/ChangeLog.md")
+set(CPACK_RPM_PACKAGE_RELEASE 1)
+set(CPACK_RPM_COMPRESSION_TYPE "xz")
+
+set(CPACK_DEBIAN_PACKAGE_NAME "solver-app")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Your Name <your@email.com>")
+set(CPACK_DEBIAN_PACKAGE_SECTION "utils")
+set(CPACK_DEBIAN_PACKAGE_PREDEPENDS "cmake (>= 3.10)")
+set(CPACK_DEBIAN_PACKAGE_RELEASE 1)
+set(CPACK_DEBIAN_COMPRESSION_TYPE "gzip")
+
+set(CPACK_WIX_PRODUCT_GUID "AUTO")
+set(CPACK_WIX_UPGRADE_GUID "AUTO")
+set(CPACK_WIX_PACKAGE_SUMMARY "Solver Application Installer")
+
+set(CPACK_DMG_FORMAT "UDBZ")
+set(CPACK_DMG_VOLUME_NAME "SolverApp")
+set(CPACK_DMG_DS_STORE "${CMAKE_CURRENT_SOURCE_DIR}/.DS_Store")
+
+set(CPACK_SOURCE_GENERATOR "TGZ;ZIP")
+set(CPACK_SOURCE_IGNORE_FILES 
+    "/\\\\.git/;
+     /\\\\.github/;
+     /_build/;
+     /\\\\.DS_Store;
+     ~$;
+     \\\\.swp$")
+
+include(CPack)

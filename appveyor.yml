@@ -1,0 +1,17 @@
+version: 1.0.{build}
+
+image: Visual Studio 2019
+
+platform:
+  - x64
+
+configuration:
+  - Release
+
+install:
+  - set PATH=C:\Program Files\CMake\bin;%PATH%
+  - cmake --version
+
+build_script:
+  - cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install -G "Visual Studio 16 2019" -A x64
+  - cmake --build _build --config Release

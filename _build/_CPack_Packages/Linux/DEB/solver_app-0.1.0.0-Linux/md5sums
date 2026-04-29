@@ -1,0 +1,10 @@
+a12d166204f175f24402323a538ca1f8  usr/bin/hello_world_app
+34ab87589b50be3d04fae68eeb1ebf5b  usr/bin/solver_app
+a89d85ccce3c46aba485c2b8e3514bc6  usr/include/solver/formatter.h
+a516bf45b2362a93e126db79b70208e3  usr/include/solver/formatter_ex.h
+06b503016c9f0b2d59d90c4379d352d3  usr/include/solver/solver.h
+22c52518dbb04808fa36893d45e71274  usr/lib/libformatter.a
+1fa3a0462d9d1c34d2c1c44beccedc8e  usr/lib/libformatter_ex.a
+9514d99a2a66ae40cb930357707f9e3b  usr/lib/libsolver.a
+8390f8b7365ff09ee181ea33a12a8aca  usr/share/doc/solver-app/LICENSE
+720c702723094567d3b5fbb723bcb39a  usr/share/doc/solver-app/README.md

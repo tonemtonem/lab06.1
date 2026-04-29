@@ -1,0 +1,12 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/koaa/tonemtonem/lab06/_build/cmake_install.cmake",
+		"/home/koaa/tonemtonem/lab06/_build/formatter_lib/cmake_install.cmake",
+		"/home/koaa/tonemtonem/lab06/_build/formatter_ex_lib/cmake_install.cmake",
+		"/home/koaa/tonemtonem/lab06/_build/solver_lib/cmake_install.cmake",
+		"/home/koaa/tonemtonem/lab06/_build/hello_world_application/cmake_install.cmake",
+		"/home/koaa/tonemtonem/lab06/_build/solver_application/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -1,0 +1,11 @@
+Executing(%mkbuilddir): /bin/sh -e /var/tmp/rpm-tmp.1nsRgl
+Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.9sQiMp
+Executing(%install): /bin/sh -e /var/tmp/rpm-tmp.LKoqu9
+Processing files: solver-app-0.1.0.0-1.x86_64
+Provides: solver-app = 0.1.0.0-1 solver-app(x86-64) = 0.1.0.0-1
+Requires(rpmlib): rpmlib(LargeFiles) <= 4.12.0-1
+Requires: libc.so.6()(64bit) libc.so.6(GLIBC_2.14)(64bit) libc.so.6(GLIBC_2.2.5)(64bit) libc.so.6(GLIBC_2.34)(64bit) libgcc_s.so.1()(64bit) libgcc_s.so.1(GCC_3.0)(64bit) libm.so.6()(64bit) libm.so.6(GLIBC_2.2.5)(64bit) libstdc++.so.6()(64bit) libstdc++.so.6(CXXABI_1.3)(64bit) libstdc++.so.6(GLIBCXX_3.4)(64bit) libstdc++.so.6(GLIBCXX_3.4.20)(64bit) libstdc++.so.6(GLIBCXX_3.4.21)(64bit) libstdc++.so.6(GLIBCXX_3.4.32)(64bit) rtld(GNU_HASH)
+Checking for unpackaged file(s): /usr/lib/rpm/check-files /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/solver_app-0.1.0.0-Linux
+Wrote: /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/RPMS/solver_app-0.1.0.0-Linux.rpm
+Executing(%clean): /bin/sh -e /var/tmp/rpm-tmp.NCLI0X
+Executing(rmbuild): /bin/sh -e /var/tmp/rpm-tmp.TCJFPw

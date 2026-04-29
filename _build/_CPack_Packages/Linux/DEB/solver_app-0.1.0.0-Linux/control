@@ -1,0 +1,10 @@
+Architecture: amd64
+Description: C++ application for solving quadratic equations
+ Solver application for quadratic equations
+Maintainer: Your Name <your@email.com>
+Package: solver-app
+Pre-Depends: cmake (>= 3.10)
+Priority: optional
+Section: utils
+Version: 0.1.0.0-1
+Installed-Size: 130

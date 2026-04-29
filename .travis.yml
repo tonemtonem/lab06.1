@@ -1,0 +1,23 @@
+language: cpp
+
+matrix:
+  include:
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          packages:
+            - cmake
+            - cmake-data
+    - os: linux
+      compiler: clang
+      addons:
+        apt:
+          packages:
+            - cmake
+            - cmake-data
+
+script:
+  - cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install
+  - cmake --build _build
+  - cmake --build _build 

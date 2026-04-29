@@ -1,0 +1,64 @@
+name: CI Build & Package
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]  # 🎯 Триггер для тегов вида v0.1.0.0
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [gcc, clang]
+    
+    name: Ubuntu / ${{ matrix.compiler }}
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Установка зависимостей
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake ${{ matrix.compiler }}
+      
+      # Установка CXX
+      - name: Set CXX
+        run: echo "CXX=${{ matrix.compiler == 'gcc' && 'g++' || 'clang++' }}" >> $GITHUB_ENV
+      
+      # Конфигурация CMake
+      - name: Configure CMake
+        run: cmake -S . -B _build -DCMAKE_INSTALL_PREFIX=_install
+        env:
+          CXX: ${{ env.CXX }}
+      
+      - name: Build
+        run: cmake --build _build
+      
+      - name: Test
+        if: startsWith(github.ref, 'refs/tags/') == false
+        run: |
+          cd _build
+          ./hello_world_application/hello_world_app
+          ./solver_application/solver_app
+      
+      - name: Package (CPack)
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          cd _build
+          cpack -G "DEB;RPM;TGZ" -C Release
+      
+      - name: Upload to Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            _build/*.deb
+            _build/*.rpm
+            _build/*.tar.gz
+          fail_on_unmatched_files: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,37 @@
+Building target platforms: x86_64
+Building for target x86_64
+error: Unable to open sqlite database /var/lib/rpm/rpmdb.sqlite: unable to open database file
+error: cannot open Packages index using sqlite - Operation not permitted (1)
+error: cannot open Packages database in /var/lib/rpm
++ umask 022
++ cd /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/BUILD/solver-app-0.1.0.0-build
++ mv /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/solver_app-0.1.0.0-Linux /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/tmpBBroot
++ RPM_EC=0
++ jobs -p
++ exit 0
++ umask 022
++ cd /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/BUILD/solver-app-0.1.0.0-build
++ /usr/bin/rm -rf /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/solver_app-0.1.0.0-Linux
++ /usr/bin/mkdir -p /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM
++ /usr/bin/mkdir /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/solver_app-0.1.0.0-Linux
++ [ -e /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/solver_app-0.1.0.0-Linux ]
++ rm -rf /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/solver_app-0.1.0.0-Linux
++ mv /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/tmpBBroot /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/solver_app-0.1.0.0-Linux
++ /usr/lib/rpm/brp-compress /usr
++ /usr/lib/rpm/brp-strip /usr/bin/strip
++ /usr/lib/rpm/brp-strip-static-archive /usr/bin/strip
++ /usr/lib/rpm/brp-strip-comment-note /usr/bin/strip /usr/bin/objdump
++ /usr/lib/rpm/brp-remove-la-files
++ umask 022
++ cd /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/BUILD/solver-app-0.1.0.0-build
++ RPM_EC=0
++ jobs -p
++ exit 0
++ umask 022
++ cd /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/BUILD/solver-app-0.1.0.0-build
++ test -d /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/BUILD/solver-app-0.1.0.0-build
++ /usr/bin/chmod -Rf a+rX,u+w,g-w,o-w /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/BUILD/solver-app-0.1.0.0-build
++ rm -rf /home/koaa/tonemtonem/lab06/_build/_CPack_Packages/Linux/RPM/BUILD/solver-app-0.1.0.0-build
++ RPM_EC=0
++ jobs -p
++ exit 0
