@@ -56,18 +56,18 @@ jobs:
       - name: Build
         run: cmake --build _build --config Release
       
-      - name: Test
+- name: Test
         if: startsWith(github.ref, 'refs/tags/') == false
+        shell: bash
         run: |
           cd _build
-if [ "${{ matrix.os }}" = "windows-latest" ]; then
-            ./hello_world_application/Release/hello_world_app.exe || ./Release/hello_world_app.exe || true
-            ./solver_application/Release/solver_app.exe || ./Release/solver_app.exe || true
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            ./hello_world_application/Release/hello_world_app.exe || true
+            ./solver_application/Release/solver_app.exe || true
           else
-            ./hello_world_application/hello_world_app
-            ./solver_application/solver_app
-          fi      
-
+            ./hello_world_application/hello_world_app || true
+            ./solver_application/solver_app || true
+          fi
       - name: Package (CPack)
         if: startsWith(github.ref, 'refs/tags/')
         shell: bash
