@@ -10,4 +10,4 @@
 - архивы с файлами исходного кода (`.tar.gz`, `.zip`)
 - пакеты с бинарным файлом _solver_ (`.deb`, `.rpm`, `.msi`, `.dmg`)
 
-[releases](https://github.com/tonemtonem/lab06.1/releases)
+[releases](https://github.com/tonemtonem/lab06.1/releases/tag/v0.2.0.0)
