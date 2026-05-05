@@ -91,7 +91,7 @@ jobs:
           if [ "$RUNNER_OS" = "Linux" ]; then
             cpack -G "DEB;RPM;TGZ" -C Release
           elif [ "$RUNNER_OS" = "Windows" ]; then
-            cpack -G "WIX;ZIP" -C Release
+            cpack -G "ZIP" -C Release
           elif [ "$RUNNER_OS" = "macOS" ]; then
             cpack -G "DragNDrop;TGZ" -C Release
           fi
