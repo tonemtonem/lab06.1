@@ -60,7 +60,11 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/') == false
         run: |
           cd _build
-          ${{ matrix.os == 'windows-latest' && '_build/Release/hello_world_application/Release/hello_world_app.exe' || './hello_world_application/hello_world_app' }}
+if("${{matrix.os}}"-eq "windows-latest"){
+.\hello_world_application\Release\hello_world_app.exe
+} else {
+.\hello_world_application\hello+world_app
+}
       
       - name: Package (CPack)
         if: startsWith(github.ref, 'refs/tags/')
