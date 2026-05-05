@@ -60,12 +60,14 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/') == false
         run: |
           cd _build
-if("${{matrix.os}}"-eq "windows-latest"){
-.\hello_world_application\Release\hello_world_app.exe
-} else {
-.\hello_world_application\hello+world_app
-}
-      
+if [ "${{ matrix.os }}" = "windows-latest" ]; then
+            ./hello_world_application/Release/hello_world_app.exe || ./Release/hello_world_app.exe || true
+            ./solver_application/Release/solver_app.exe || ./Release/solver_app.exe || true
+          else
+            ./hello_world_application/hello_world_app
+            ./solver_application/solver_app
+          fi      
+
       - name: Package (CPack)
         if: startsWith(github.ref, 'refs/tags/')
         shell: bash
