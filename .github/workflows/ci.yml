@@ -1,8 +1,7 @@
 name: CI Build & Package
 
 permissions:
-  contents: write  
-  packages: write 
+  contents: write
 
 on:
   push:
@@ -13,22 +12,40 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     
     strategy:
       fail-fast: false
       matrix:
-        compiler: [gcc, clang]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        compiler: [gcc, clang, msvc]
+        exclude:
+          - os: windows-latest
+            compiler: gcc
+          - os: windows-latest
+            compiler: clang
+          - os: ubuntu-latest
+            compiler: msvc
+          - os: macos-latest
+            compiler: msvc
+          - os: macos-latest
+            compiler: gcc
     
-    name: Ubuntu / ${{ matrix.compiler }}
+    name: ${{ matrix.os }} / ${{ matrix.compiler }}
     
     steps:
       - uses: actions/checkout@v4
       
-      - name: Install dependencies
+      - name: Install dependencies (Linux)
+        if: matrix.os == 'ubuntu-latest'
         run: sudo apt-get update && sudo apt-get install -y cmake ${{ matrix.compiler }}
       
-      - name: Set CXX
+      - name: Install dependencies (macOS)
+        if: matrix.os == 'macos-latest'
+        run: brew install cmake
+      
+      - name: Set CXX (Unix)
+        if: matrix.os != 'windows-latest'
         run: echo "CXX=${{ matrix.compiler == 'gcc' && 'g++' || 'clang++' }}" >> $GITHUB_ENV
       
       - name: Configure CMake
@@ -37,29 +54,41 @@ jobs:
           CXX: ${{ env.CXX }}
       
       - name: Build
-        run: cmake --build _build
+        run: cmake --build _build --config Release
       
       - name: Test
         if: startsWith(github.ref, 'refs/tags/') == false
         run: |
           cd _build
-          ./hello_world_application/hello_world_app
-          ./solver_application/solver_app
+          ${{ matrix.os == 'windows-latest' && '_build/Release/hello_world_application/Release/hello_world_app.exe' || './hello_world_application/hello_world_app' }}
       
       - name: Package (CPack)
         if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
         run: |
           cd _build
-          cpack -G "DEB;RPM;TGZ" -C Release
+          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
+            cpack -G "DEB;RPM;TGZ" -C Release
+          elif [ "${{ matrix.os }}" = "windows-latest" ]; then
+            cpack -G "WIX;ZIP" -C Release
+          elif [ "${{ matrix.os }}" = "macos-latest" ]; then
+            cpack -G "DragNDrop;TGZ" -C Release
+          fi
       
       - name: Upload to Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ github.ref_name }}
+          draft: false
+          prerelease: false
           files: |
             _build/*.deb
             _build/*.rpm
             _build/*.tar.gz
+            _build/*.msi
+            _build/*.dmg
+            _build/*.zip
           fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
