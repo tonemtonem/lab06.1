@@ -37,15 +37,15 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Install dependencies (Linux)
-        if: matrix.os == 'ubuntu-latest'
+        if: ${{ matrix.os == 'ubuntu-latest' }}
         run: sudo apt-get update && sudo apt-get install -y cmake ${{ matrix.compiler }}
       
       - name: Install dependencies (macOS)
-        if: matrix.os == 'macos-latest'
+        if: ${{ matrix.os == 'macos-latest' }}
         run: brew install cmake
       
       - name: Set CXX (Unix)
-        if: matrix.os != 'windows-latest'
+        if: ${{ matrix.os != 'windows-latest' }}
         run: echo "CXX=${{ matrix.compiler == 'gcc' && 'g++' || 'clang++' }}" >> $GITHUB_ENV
       
       - name: Configure CMake
@@ -56,8 +56,8 @@ jobs:
       - name: Build
         run: cmake --build _build --config Release
       
-- name: Test
-        if: startsWith(github.ref, 'refs/tags/') == false
+      - name: Test
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         shell: bash
         run: |
           cd _build
@@ -68,21 +68,22 @@ jobs:
             ./hello_world_application/hello_world_app || true
             ./solver_application/solver_app || true
           fi
+      
       - name: Package (CPack)
-        if: startsWith(github.ref, 'refs/tags/')
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
         shell: bash
         run: |
           cd _build
-          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
+          if [ "$RUNNER_OS" = "Linux" ]; then
             cpack -G "DEB;RPM;TGZ" -C Release
-          elif [ "${{ matrix.os }}" = "windows-latest" ]; then
+          elif [ "$RUNNER_OS" = "Windows" ]; then
             cpack -G "WIX;ZIP" -C Release
-          elif [ "${{ matrix.os }}" = "macos-latest" ]; then
+          elif [ "$RUNNER_OS" = "macOS" ]; then
             cpack -G "DragNDrop;TGZ" -C Release
           fi
       
       - name: Upload to Release
-        if: startsWith(github.ref, 'refs/tags/')
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref_name }}
